@@ -1,0 +1,22 @@
+{
+  "name": "rollup-cache",
+  "version": "1.0.0",
+  "description": "Caching tools for Rollup",
+  "type": "module",
+  "main": "index.js",
+  "repository": "https://github.com/robertknight/rollup-cache",
+  "author": "Robert Knight <robertknight@gmail.com>",
+  "license": "BSD-2-Clause",
+  "files": [
+    "index.js",
+    "lib/"
+  ],
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "rollup": "^2.58.3",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "typecheck": "tsc"
+  }
+}

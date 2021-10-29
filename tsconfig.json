@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Language and Environment */
+    "target": "es2021",
+
+    /* Modules */
+    "module": "es2020",
+    "moduleResolution": "node",
+
+    /* JavaScript Support */
+    "allowJs": true,
+    "checkJs": true,
+
+    /* Emit */
+    "noEmit": true,
+
+    /* Type Checking */
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["index.js", "lib/*.js"]
+}
