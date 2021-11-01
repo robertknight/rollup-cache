@@ -1,7 +1,7 @@
 {
   "name": "rollup-cache",
   "version": "1.0.0",
-  "description": "Caching tools for Rollup",
+  "description": "Disk caching to speed up Rollup builds",
   "type": "module",
   "main": "index.js",
   "repository": "https://github.com/robertknight/rollup-cache",
