@@ -1,19 +1,5 @@
-import { createHash } from "crypto";
-import { existsSync, readFileSync } from "fs";
-
-import { cachingPlugin, pluginCacheConfig } from "./lib/plugin.js";
-
-/**
- * @param {string[]} files
- */
-function createVersionHash(files) {
-  const hash = createHash("md5");
-  for (let file of files) {
-    const data = readFileSync(file);
-    hash.update(data);
-  }
-  return hash.digest("hex");
-}
+import { addPluginCachingToConfig } from "./lib/plugin.js";
+import { addPrebuildingToConfig } from "./lib/prebuild.js";
 
 /**
  * @typedef CacheConfig
@@ -21,13 +7,13 @@ function createVersionHash(files) {
  * @prop {string} [cacheDir]
  * @prop {string[]} [dependencies]
  * @prop {boolean} [enabled]
+ * @prop {string} [prebuildDir]
+ * @prop {string[]} [prebuild]
  */
-
-const defaultDependencies = ["package.json", "package-lock.json", "yarn.lock"];
 
 /**
  * @param {CacheConfig} cacheConfig
- * @param {import("rollup").InputOptions} buildConfig
+ * @param {import("rollup").RollupOptions} buildConfig
  */
 export function cacheBuild(cacheConfig, buildConfig) {
   const {
@@ -35,6 +21,8 @@ export function cacheBuild(cacheConfig, buildConfig) {
     cacheDir = "node_modules/.cache/rollup-cache",
     dependencies = [],
     enabled = process.env.NODE_ENV !== "production",
+    prebuild = [],
+    prebuildDir = "./npm",
   } = cacheConfig;
 
   if (!enabled) {
@@ -43,27 +31,18 @@ export function cacheBuild(cacheConfig, buildConfig) {
 
   const cacheRoot = `${cacheDir}/${name}`;
 
-  const versionHash = createVersionHash([
-    ...defaultDependencies.filter((path) => existsSync(path)),
-    ...dependencies,
-  ]);
+  let wrappedConfig = addPluginCachingToConfig(buildConfig, {
+    cacheRoot,
+    dependencies,
+  });
 
-  return {
-    ...buildConfig,
-    plugins: buildConfig.plugins?.map((plugin) => {
-      if (!plugin) {
-        return plugin;
-      }
-      const config = pluginCacheConfig(plugin);
-      if (!config) {
-        return plugin;
-      }
-      return cachingPlugin(plugin, {
-        cacheDir: cacheRoot,
-        // TODO - Add plugin-specific files (eg. Babel config) to version hash.
-        versionHash,
-        ...config,
-      });
-    }),
-  };
+  if (prebuild.length > 0) {
+    wrappedConfig = addPrebuildingToConfig(wrappedConfig, {
+      cacheRoot,
+      prebuildDir,
+      prebuild,
+    });
+  }
+
+  return wrappedConfig;
 }
