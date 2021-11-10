@@ -14,7 +14,9 @@
     "checkJs": true,
 
     /* Emit */
-    "noEmit": true,
+    "outDir": "types",
+    "declaration": true,
+    "emitDeclarationOnly": true,
 
     /* Type Checking */
     "strict": true,

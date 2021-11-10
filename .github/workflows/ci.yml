@@ -15,5 +15,5 @@ jobs:
       run: yarn install --frozen-lockfile
     - name: Format
       run: yarn checkformatting
-    - name: Typecheck
-      run: yarn typecheck
+    - name: Build
+      run: yarn build
