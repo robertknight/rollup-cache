@@ -21,7 +21,8 @@
   "scripts": {
     "build": "tsc",
     "checkformatting": "prettier --check **/*.js",
-    "format": "prettier --write --list-different **/*.js"
+    "format": "prettier --write --list-different **/*.js",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
