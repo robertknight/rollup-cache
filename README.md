@@ -24,10 +24,9 @@ which it is compatible and where it can significantly speed up builds:
 - @rollup/plugin-node-resolve
 - @rollup/plugin-babel
 
-For other plugins, caching is not supported at the moment.
-
-The caching logic itself is generic and will most likely work with other plugins. If you would like to experiment, you can fork this repo and modify this
-[filter list](https://github.com/robertknight/rollup-cache/blob/d26ca1aaade3a19436123fb3a516e98fe75293f3/lib/plugin.js#L118).
+For other plugins, caching is not supported at the moment. See
+[this issue](https://github.com/robertknight/rollup-cache/issues/7) to learn
+more.
 
 ### Prebuilding
 
