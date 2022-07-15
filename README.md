@@ -24,7 +24,9 @@ which it is compatible and where it can significantly speed up builds:
 - @rollup/plugin-node-resolve
 - @rollup/plugin-babel
 
-_TODO: Add a note here on how enable caching for other plugins._
+For other plugins, caching is not supported at the moment. See
+[this issue](https://github.com/robertknight/rollup-cache/issues/7) to learn
+more.
 
 ### Prebuilding
 
