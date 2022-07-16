@@ -10,9 +10,14 @@
   "license": "BSD-2-Clause",
   "files": [
     "index.js",
+    "index-cjs.js",
     "lib/",
     "types/"
   ],
+  "exports": {
+    "import": "./index.js",
+    "require": "./index-cjs.js"
+  },
   "devDependencies": {
     "@types/node": "^16.11.6",
     "prettier": "^2.4.1",
