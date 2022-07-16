@@ -10,13 +10,13 @@
   "license": "BSD-2-Clause",
   "files": [
     "index.js",
-    "index-cjs.js",
+    "index.cjs",
     "lib/",
     "types/"
   ],
   "exports": {
     "import": "./index.js",
-    "require": "./index-cjs.js"
+    "require": "./index.cjs"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",
