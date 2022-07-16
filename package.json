@@ -20,6 +20,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:cjs": "rollup -c",
     "checkformatting": "prettier --check **/*.js",
     "format": "prettier --write --list-different **/*.js",
     "prepublish": "yarn build"
