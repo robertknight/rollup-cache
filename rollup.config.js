@@ -1,4 +1,4 @@
-import pkg from "./package.json";
+import pkg from "./package.json" assert { type: "json" };
 
 const OUTPUT_COMMON_JS_FILE = pkg.exports.require;
 
