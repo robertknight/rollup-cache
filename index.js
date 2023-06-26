@@ -10,8 +10,8 @@ import { addPrebuildingToConfig } from "./lib/prebuild.js";
  * @prop {string[]} [dependencies] - A list of file paths to be checked before
  *   using existing cache data. If any of these files have changed since the
  *   previous build, the existing cache data will be discarded.
- * @prop {string[]} [cachePlugins] - A list of plugins name to cache on top of
- * "babel", "commonjs" and "node-resolve".
+ * @prop {string[]} [cachePlugins] - A list of plugins name to cache. Defaults
+ * to ["babel", "commonjs", "node-resolve"].
  * @prop {boolean} [enabled] - Whether to enable caching. By default this setting
  *   is true unless this is a production build, signalled by
  *   `process.env.NODE_ENV` being set to `production`.
@@ -35,7 +35,7 @@ export function cacheBuild(cacheConfig, buildConfig) {
     name,
     cacheDir = "node_modules/.cache/rollup-cache",
     dependencies = [],
-    cachePlugins = [],
+    cachePlugins = ["babel", "commonjs", "node-resolve"],
     enabled = process.env.NODE_ENV !== "production",
     prebuild = [],
     prebuildDir = "./npm",
