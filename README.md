@@ -24,9 +24,8 @@ which it is compatible and where it can significantly speed up builds:
 - @rollup/plugin-node-resolve
 - @rollup/plugin-babel
 
-For other plugins, caching is not supported at the moment. See
-[this issue](https://github.com/robertknight/rollup-cache/issues/7) to learn
-more.
+You can specify other plugins via the `cachePlugins` config option, but be
+aware that this may not work for all plugins.
 
 ### Prebuilding
 
@@ -137,6 +136,12 @@ If omitted, prebuilding will be disabled.
 ### Plugin caching options
 
 - `cacheDir` specifies a location to write cache files to. _Default: "node_modules/.cache/rollup-cache"_
+
+- `cachePlugins` specifies a list of plugins to cache. _Default:
+  `["babel", "commonjs", "node-resolve"]`._
+
+  It is recommended to only enable caching for "heavy" plugins that do a lot of
+  work. Caching may not work for all plugins.
 
 - `dependencies` is a list of file paths whose contents should be used to
   determine whether to reuse cached results from previous builds. If any of these
